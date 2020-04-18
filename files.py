@@ -33,3 +33,4 @@ def parse_file_list(filelist):
 
 
 print(parse_file_list(read_files()))
+print(len(os.listdir(input())))
