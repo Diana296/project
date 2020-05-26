@@ -137,7 +137,7 @@ def parse_file_list(file_list):
 def parse_date(file_path):
     """
     Принимает путь к файлу
-    Возращает год и месяц создания файла
+    Возвращает год и месяц создания файла
     """
     #  работает корректно только под windows
     date = time.ctime(os.path.getctime(file_path))
