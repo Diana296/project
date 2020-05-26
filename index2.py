@@ -139,7 +139,6 @@ def parse_date(file_path):
     Принимает путь к файлу
     Возвращает год и месяц создания файла
     """
-    #  работает корректно только под windows
     date = time.ctime(os.path.getctime(file_path))
     year = date[-4:]
     month = date[4:7]
