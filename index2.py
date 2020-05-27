@@ -3,6 +3,8 @@ import collections
 import shutil
 import time
 import tkinter as tk
+from tkinter import scrolledtext
+
 
 path = ""
 
@@ -12,6 +14,7 @@ documents = ['.pdf', '.docx', '.txt', 'doc']
 films = ['.mp4', '.avi', '.mov', '.webm']
 executables = ['.exe', '.bin']
 music = ['.mp3', '.wav']
+
 
 
 def read_files(local_path):
@@ -137,8 +140,9 @@ def parse_file_list(file_list):
 def parse_date(file_path):
     """
     Принимает путь к файлу
-    Возвращает год и месяц создания файла
+    Возращает год и месяц создания файла
     """
+    #  работает корректно только под windows
     date = time.ctime(os.path.getctime(file_path))
     year = date[-4:]
     month = date[4:7]
@@ -150,20 +154,21 @@ def start():
     #  make_report(parse_file_list(read_files(file_path)))
     data = parse_file_list(read_files(file_path))
     listBox = tk.Listbox()
+    listBox = scrolledtext.ScrolledText(width=85,height=10)
     listBox.insert(tk.END, "Различных файлов в данной директории:" + str(data[1]))
     listBox.insert(tk.END, "Различных папок в данной директории:" + str(data[2]))
     listBox.insert(tk.END, "Файлов различных расширений в данной директории" + str(data[0]))
     listBox.grid(row=3, columnspan=5)
-
+    
 
 if __name__ == '__main__':
-    root = tk.Tk()
-    root.geometry('900x600')
+    root = tk.Tk() 
+    root.geometry('800x400')
     root.title("Работа с файлами")
-    textbox = tk.Label(text="Введите полный путь до директории", font=("Poppins", 14))
+    textbox = tk.Label(text="Введите полный путь до директории", font=("Century", 14)) 
     textbox.grid(column=0, row=0)
     input_entry = tk.Entry(width=70)
     input_entry.grid(column=1, row=0)
-    button = tk.Button(text='Отсортировать содержимое папки', command=start)
+    button = tk.Button(text='Отсортировать содержимое папки', bg="pink", fg="white", command=start)
     button.grid(column=0, row=1, columnspan=2, padx=10, pady=10)
     root.mainloop()
